@@ -27,7 +27,7 @@ img = "restore_screen.png"
 
 [[extra.list]]
 title = "Security"
-content = 'We build wallet with credo "Not your keys, not your coins". Private keys are kept in encrypted storage locally on your device.'
+content = 'We build wallet with credo <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">"Not your keys, not your coins"</a>. Private keys are kept in encrypted storage locally on your device.'
 
 [[extra.list]]
 title = "Privacy"

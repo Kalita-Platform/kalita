@@ -46,3 +46,10 @@ pre = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0
 url = "https://github.com/kalita-platform/kalita"
 post = "v0.1.0"
 weight = 20
+
+[[extra.menu.social]]
+name = "Telegram"
+pre = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 37.503 33.574" fill="none" stroke="currentColor" stroke-width="3" xmlns:v="https://vecta.io/nano"><g stroke-linecap="round"><path d="M1.013 14.53L36.503 1l-7.818 31.561" stroke-linejoin="round"/><path d="M29.141 7.652L11.588 19.114M1.013 14.53l6.114 2.673m21.558 15.358L16.037 22.382"/></g><path d="M29.141 7.652L16.037 22.382"/></svg>'
+url = "https://t.me/kalita_wallet"
+weight = 30
+

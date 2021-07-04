@@ -111,5 +111,7 @@ avatar = "team/ncrashed.jpg"
 role = "Team lead. Founder"
 bio = "Senior Haskell and Rust developer with more than 6 years of commercial experience. He is an early adopter of cryptocurrencies and appreciates Ergo elaboration on Bitcoin core technical, economical and ideological aspects."
 github = "ncrashed"
+email = "ncrashed@protonmail.com"
+telegram = "ncrashed"
 
 +++

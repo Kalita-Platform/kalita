@@ -1,6 +1,6 @@
 +++
-title = "FAQ"
-description = "Answers to frequently asked questions."
+title = "Download"
+description = "Get wallet files to install it in various systems."
 date = 2021-05-01T19:30:00+00:00
 updated = 2021-05-01T19:30:00+00:00
 draft = false
@@ -9,7 +9,7 @@ sort_by = "weight"
 template = "docs/page.html"
 
 [extra]
-lead = "Answers to frequently asked questions."
+lead = "Get wallet files to install it in various systems."
 toc = true
 top = false
 +++

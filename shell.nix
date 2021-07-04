@@ -9,6 +9,7 @@ stdenv.mkDerivation rec {
     clang
     llvm
     llvmPackages.libclang
+    zola
   ];
   shellHook = ''
   export LIBCLANG_PATH="${llvmPackages.libclang}/lib"

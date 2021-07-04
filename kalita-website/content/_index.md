@@ -4,7 +4,7 @@ title = "Kalita wallet"
 # The homepage contents
 [extra]
 lead = '<b>Kalita</b> is a mobile and desktop wallet for Ergo platform, which combines high privacy and friendly UX.'
-url = "/getting-started/download"
+url = "docs/getting-started/download"
 url_button = "Download"
 repo_version = "v0.1.0"
 repo_license = "Open-source MIT License."

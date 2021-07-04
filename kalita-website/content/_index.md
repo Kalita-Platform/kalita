@@ -51,56 +51,56 @@ content = 'Manage <a href="https://sigmausd.io/">SigmaUSD</a> and other Ergo tok
 
 [[extra.roadpoint]]
 tittle = "Raising funds"
-date = "Q2 2021"
+date = "Q3 2021"
 icon = "roadmap/raising_funds.png"
 class = "funds-icon"
 content = "Description of design choices. Contact with community and adjusting features for it demand. Collection of funds for a full time occupation for the wallet. Failure of fund raising won't stop developing, but will slow down significantly."
 
 [[extra.roadpoint]]
 tittle = "Basic wallet"
-date = "Q3 2021"
+date = "Q4 2021"
 icon = "roadmap/android.png"
 class = "android-icon"
 content = "Basic wallet that can send/receive Ergo in Android devices. Encryption with Android Keystore system."
 
 [[extra.roadpoint]]
 tittle = "Tokens"
-date = "Q4 2021"
+date = "Q1 2022"
 icon = "roadmap/token.png"
 class = "tokens-icon"
 content = "Support for SigmaUSD and other tokens of user choice."
 
 [[extra.roadpoint]]
 tittle = "iOS"
-date = "Q1 2022"
+date = "Q2 2022"
 icon = "roadmap/ios.png"
 class = "ios-icon"
 content = "iOS adaptation and publication in Apple App store."
 
 [[extra.roadpoint]]
 tittle = "Desktop"
-date = "Q2 2022"
+date = "Q3 2022"
 icon = "roadmap/desktop.png"
 class = "desktop-icon"
 content = "Add desktop platform (Windows, MacOS, Linux), encryption of keys storage on disk, packaging for target platforms."
 
 [[extra.roadpoint]]
 tittle = "Mix"
-date = "Q3 2022"
+date = "Q4 2022"
 icon = "roadmap/mix.png"
 class = "mix-icon"
 content = "Integration of Ergo Mixer into wallet, design restore system for mix results."
 
 [[extra.roadpoint]]
 tittle = "Bitcoin"
-date = "Q4 2022"
+date = "Q1 2023"
 icon = "roadmap/bitcoin.png"
 class = "bitcoin-icon"
 content = "Basic bitcoin wallet for atomic swap purposes."
 
 [[extra.roadpoint]]
 tittle = "Atomic swap"
-date = "Q1-Q4 2023"
+date = "Q2-Q4 2023"
 icon = "roadmap/atomic_swap.png"
 class = "swap-icon"
 content = "Bitcoin-Ergo atomic swap with swap requests desk on wallet backend side. Addition of tokens swapping."

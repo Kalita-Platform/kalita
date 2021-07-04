@@ -1,0 +1,95 @@
+.roadmap-section {
+    width: 100%;
+    background-color: $gray-50;
+    margin-top: 70px;
+    transform: skewY(1deg);
+}
+.roadmap-inner-section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: $gray-75;
+    transform: skewY(1deg);
+}
+.roadmap-container {
+    transform: skewY(-2deg);
+}
+
+.roadmap-tittle {
+    margin-bottom: 30px;
+}
+
+body.dark .roadmap-section {
+    background-color: $gray-850;
+}
+body.dark .roadmap-inner-section {
+    background-color: $gray-800;
+}
+
+.roadpoint-date {
+    color: $primary;
+    font-weight: bold;
+    font-size: 24pt;
+}
+body.dark .roadpoint-date {
+    color: $link-color-dark;
+}
+
+.roadpoint-icon-container {
+    // border-style: solid;
+    border-radius: 35px;
+    // border-width: 4px;
+    background-color: $gray-300;
+    width: 70px;
+    height: 70px;
+    margin: auto;
+}
+
+.roadpoint-tittle {
+    margin-top: 40px;
+}
+.roadpoint-content {
+    margin-bottom: 40px;
+}
+
+.funds-icon {
+    padding-top: 10px;
+    width: 50px;
+}
+
+.android-icon {
+    padding-top: 8px;
+    padding-left: 1px;
+    width: 50px;
+}
+
+.tokens-icon {
+    padding-top: 10px;
+    width: 50px;
+}
+
+.ios-icon {
+    padding-top: 10px;
+    width: 50px;
+}
+
+.desktop-icon {
+    padding-top: 10px;
+    width: 50px;
+}
+
+.mix-icon {
+    padding-top: 10px;
+    width: 50px;
+}
+
+.bitcoin-icon {
+    padding-top: 10px;
+    padding-left: 4px;
+    height: 60px;
+}
+
+.swap-icon {
+    padding-top: 10px;
+    padding-left: 2px;
+    width: 50px;
+}

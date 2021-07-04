@@ -95,6 +95,30 @@
   </div>
 </section>
 
+<section class="section section-sm roadmap-section">
+  <div class="section section-sm roadmap-inner-section">
+    <div class="container roadmap-container">
+      <div class="row justify-content-center">
+        <div class="col-lg-16 text-center">
+          <h1 class="mt-0 roadmap-tittle">{{ section.extra.roadmap.tittle | default(value="Roadmap") }}</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center text-center">
+        {% for val in section.extra.roadpoint %}
+          <div class="col-lg-4">
+            <h2 class="h4 roadpoint-tittle">{{ val.tittle }}</h2>
+            <h2 class="h2 roadpoint-date">{{ val.date }} </h2>
+            <div class="roadpoint-icon-container">
+              <img class="roadpoint-icon {{ val.class }}" src={{ val.icon }}> 
+            </div>
+            <p class="roadpoint-content">{{ val.content }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-sm container-fluid">
   <div class="row justify-content-center text-center">
     <div class="col-lg-9"></div>

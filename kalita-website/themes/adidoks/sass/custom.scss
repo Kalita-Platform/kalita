@@ -1,26 +1,13 @@
-.slideshow {
-    position: relative; 
-    height: 500px;
-}
-.slideshow > div { 
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    right: 0px; 
-    bottom: 0px; 
-}
+/** Import Bootstrap functions */
+@import "bootstrap/scss/functions";
 
-.splash-image {
-    // transform: rotate(-12deg);
-    height: 500px;
-    // animation:spin 1.2s ease-in-out forwards;
-}
+/// Missing components required by following color includes
+@import "bootstrap/scss/bootstrap";
 
-.slideshow:first-child {
-    animation:spin 1.2s ease-in-out forwards;
-}
+/// Color variables for files below
+@import "common/variables";
+@import "common/dark";
 
-@keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-   100% { -webkit-transform: rotate(-12deg); }
-}
+/// Import pages styles
+@import "layouts/splash";
+@import "layouts/roadmap";

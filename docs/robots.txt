@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://kalita-platform.github.io/kalita/sitemap.xml

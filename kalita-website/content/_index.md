@@ -31,7 +31,7 @@ content = 'We build wallet with credo <a href="https://en.bitcoin.it/wiki/Non-cu
 
 [[extra.list]]
 title = "Privacy"
-content = 'No public keys are sent to server to prevent surveillance. Tor feature will hide your network address.'
+content = '<a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">No public keys are sent</a> to server to prevent surveillance. Tor feature will hide your network address.'
 
 [[extra.list]]
 title = "Use everywhere"
@@ -43,10 +43,10 @@ content = "Exchange coins without third party with onchain Atomic Swaps."
 
 [[extra.list]]
 title = "Mixer"
-content = "Scrumble public history of your coins with ErgoMix integration."
+content = 'Scrumble public history of coins with <a href="https://github.com/ergoMixer/ergoMixBack">Ergo Mixer</a> integration.'
 
 [[extra.list]]
 title = "Tokens"
-content = "Manage SigmaUSD and other Ergo tokens"
+content = 'Manage <a href="https://sigmausd.io/">SigmaUSD</a> and other Ergo tokens'
 
 +++

@@ -27,13 +27,28 @@
   <div class="content">
     <section class="section container-fluid mt-n3 pb-3">
       <div class="row justify-content-center">
-        <div class="col-lg-12 text-center">
-          <h1 class="mt-0">{{ section.title | default(value="Modern Documentation Theme") }}</h1>
+        <div class="col-lg-6 col-xl-6 text-center order-xl-0 order-2">
+          <div class="slideshow">
+            {% for val in section.extra.splash %}
+            <div>
+              <img class="splash-image" src="{{ val.img }}">
+            </div>
+            {% endfor %}
+          </div>
+
+          
         </div>
-        <div class="col-lg-9 col-xl-8 text-center">
-          <p class="lead">{{ section.extra.lead | default(value="Please start setting config.toml and adding your content.") | safe }}</p>
-          <a class="btn btn-primary btn-lg px-4 mb-2" href="{{ get_url(path=section.extra.url | default(value="/")) | safe }}" role="button">{{ section.extra.url_button | default(value="Get started") }}</a>
-          <p class="meta">{{ section.extra.repo_license | default(value="MIT")}} <a href="{{ section.extra.repo_url | default(value="https://github.com/aaranxu/adidoks") | safe }}">{{ section.extra.repo_version | default(value="0.1.0") }}</a></p>
+        <div class="col-lg-10 col-xl-10 mb-5 align-self-center">
+          <div class="row justify-content-center">
+            <div class="col-lg-16 text-center">
+              <h1 class="mt-0">{{ section.title | default(value="Modern Documentation Theme") }}</h1>
+            </div>
+            <div class="col-lg-12 col-xl-12 text-center">
+              <p class="lead">{{ section.extra.lead | default(value="Please start setting config.toml and adding your content.") | safe }}</p>
+              <a class="btn btn-primary btn-lg px-4 mb-2" href="{{ get_url(path=section.extra.url | default(value="/")) | safe }}" role="button">{{ section.extra.url_button | default(value="Get started") }}</a>
+              <p class="meta">{{ section.extra.repo_license | default(value="MIT")}} <a href="{{ section.extra.repo_url | default(value="https://github.com/aaranxu/adidoks") | safe }}">{{ section.extra.repo_version | default(value="0.1.0") }}</a></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

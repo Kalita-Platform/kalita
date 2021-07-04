@@ -10,6 +10,21 @@ repo_version = "v0.1.0"
 repo_license = "Open-source MIT License."
 repo_url = "https://github.com/kalita-platform/kalita"
 
+[[extra.splash]]
+img = "balances_screen.png"
+
+[[extra.splash]]
+img = "send_screen.png"
+
+[[extra.splash]]
+img = "seed_screen.png"
+
+[[extra.splash]]
+img = "txinfo_screen.png"
+
+[[extra.splash]]
+img = "restore_screen.png"
+
 [[extra.list]]
 title = "Security"
 content = 'We build wallet with credo "Not your keys, not your coins". Private keys are kept in encrypted storage locally on your device.'

@@ -125,7 +125,7 @@ telegram = "@ponytailsonmyhead"
 [[extra.team]]
 name = "Levon Oganyan"
 avatar = "team/lemarwin.png"
-role = "Backend Developer"
+role = "Fullstack Developer"
 bio = "Senior Haskell developer and middle Rust developer. He has more that 5 years of commercial development in different fields and completed Masters degree in technical University of Munich with the thesis project on Hyperledger blockchain. He has heard about Bitcoin first in 2010 and ignored it. The regret pushed Levon to focus on crypto and to make sure not to miss the next big opportunity."
 github = "LeMarwin"
 

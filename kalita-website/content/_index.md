@@ -114,4 +114,12 @@ github = "ncrashed"
 email = "ncrashed@protonmail.com"
 telegram = "ncrashed"
 
+[[extra.team]]
+name = "Anatoly Nardid"
+avatar = "team/nazgull08.jpg"
+role = "Developer"
+bio = "Senior Haskell developer. Has 5 years of development in different commercial projects including cryptocurrencies."
+github = "nazgull08"
+telegram = "@onytailsonmyhead"
+
 +++

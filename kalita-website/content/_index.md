@@ -109,7 +109,7 @@ content = "Bitcoin-Ergo atomic swap with swap requests desk on wallet backend si
 name = "Anton Gushcha"
 avatar = "team/ncrashed.jpg"
 role = "Team lead. Founder"
-bio = "Senior Haskell and Rust developer with more than 6 years of commercial experience. He is an early adopter of cryptocurrencies and appreciates Ergo elaboration on Bitcoin core technical, economical and ideological aspects."
+bio = "Senior Haskell and Rust developer with more than 6 years of commercial experience. He is an early adopter of cryptocurrencies and appreciates Ergo elaboration on Bitcoin core technical, economical and ideological aspects. Anton has fullstack experience with web, mobile and backend development alongside with cryptographic and security expertise."
 github = "ncrashed"
 email = "ncrashed@protonmail.com"
 telegram = "ncrashed"
@@ -117,9 +117,24 @@ telegram = "ncrashed"
 [[extra.team]]
 name = "Anatoly Nardid"
 avatar = "team/nazgull08.jpg"
-role = "Developer"
-bio = "Senior Haskell developer. Has 5 years of development in different commercial projects including cryptocurrencies."
+role = "Fullstack Developer"
+bio = "Senior Haskell developer. Anatoly has 5 years of development in different commercial projects including cryptocurrencies. He has rich experience with UI design and creation of high quality scientific papers."
 github = "nazgull08"
-telegram = "@onytailsonmyhead"
+telegram = "@ponytailsonmyhead"
+
+[[extra.team]]
+name = "Levon Oganyan"
+avatar = "team/lemarwin.png"
+role = "Backend Developer"
+bio = "Senior Haskell developer and middle Rust developer. He has more that 5 years of commercial development in different fields and completed Masters degree in technical University of Munich with the thesis project on Hyperledger blockchain. He has heard about Bitcoin first in 2010 and ignored it. The regret pushed Levon to focus on crypto and to make sure not to miss the next big opportunity."
+github = "LeMarwin"
+
+[[extra.team]]
+name = "Oleksandr Chekanin"
+avatar = "team/aminion.jpg"
+role = "Backend Developer"
+bio = "Middle Haskell developer. He has overall 5 years of commercial development and 2 of them cryptocurrency-related."
+github = "Aminion"
+telegram = "@aminion116"
 
 +++

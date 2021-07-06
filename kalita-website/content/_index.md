@@ -9,6 +9,7 @@ url_button = "Download"
 repo_version = "v0.1.0"
 repo_license = "Open-source MIT License."
 repo_url = "https://github.com/kalita-platform/kalita"
+team_description = 'We are part of <a href="https://github.com/hexresearch">HXR team</a> that provides open source solutions since 2016.'
 
 [[extra.splash]]
 img = "balances_screen.png"

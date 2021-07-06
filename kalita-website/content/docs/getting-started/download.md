@@ -13,3 +13,5 @@ lead = "Get wallet files to install it in various systems."
 toc = true
 top = false
 +++
+
+Wallet is in crowdfund phase, so nothing here yet. See <a href="/#crowdfund">funding meter</a> on the main page.

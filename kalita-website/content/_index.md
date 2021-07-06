@@ -141,11 +141,11 @@ telegram = "@aminion116"
 amount = 0 # Percent field set in css _crowdfund.scss in .funding-meter
 
 [extra.crowdfund.minimal]
-amount = 24000
+amount = 36000
 content = "The level will allow working on the project full-time all our team for one year fulltime. We can provide you with an operational Ergo wallet as quickly as possible. Raising below the level will force to develop wallet with a reduced team or part-time only."
 
 [extra.crowdfund.optimal]
-amount = 120000
+amount = 180000
 content = "The level will allow working on the project full-time all our team for five years and develop all complex features like mixing and 0-trust atomic swaps. Also, the team will be protected from possible volatility issues when Ergo's price drops down."
 
 [extra.crowdfund.lightning]

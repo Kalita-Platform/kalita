@@ -137,4 +137,18 @@ bio = "Middle Haskell developer. He has overall 5 years of commercial developmen
 github = "Aminion"
 telegram = "@aminion116"
 
+[extra.crowdfund]
+amount = 0 # Percent field set in css _crowdfund.scss in .funding-meter
+
+[extra.crowdfund.lightning]
+qrcode = "crowdfund/lightning.png"
+lnurl = "LNURL1DP68GURN8GHJ7MRWW3UXYMM59ENXJCT5DFSKVTNRDAKJ7MRWW4EXCTMSV9UN7ATNV4EXUCTDV57KUCMJV9EKSETYLW0R0A"
+
+[extra.crowdfund.bitcoin]
+qrcode = "crowdfund/bitcoin.png"
+address = "bc1q8fhscz9ua5j76tkr04y9y7pr70gnq4lc40aun7"
+
+[extra.crowdfund.ergo]
+qrcode = "crowdfund/ergo.png"
+address = "9hViCLdA3AGpQ7o9hRh3eHsCedCCB72Xtuj1yo6uYnYUAJqzVwE"
 +++

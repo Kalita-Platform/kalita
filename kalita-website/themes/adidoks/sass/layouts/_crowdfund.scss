@@ -1,0 +1,95 @@
+.crowdfund-section {
+    width: 100%;
+    background-color: $gray-50;
+    margin-top: 70px;
+    transform: skewY(-1deg);
+}
+.crowdfund-inner-section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: $gray-75;
+    transform: skewY(-1deg);
+}
+.crowdfund-container {
+    transform: skewY(2deg);
+}
+
+.crowdfund-tittle {
+    margin-bottom: 30px;
+}
+
+body.dark .crowdfund-section {
+    background-color: $gray-850;
+}
+body.dark .crowdfund-inner-section {
+    background-color: $gray-800;
+}
+
+.raised-amount {
+    color: $red-3;
+}
+
+.funding-wrapper {
+    border-radius: 25px;
+    height: 40px;
+    width: 80%;
+    background-color: $gray-300;
+    position: relative;
+}
+body.dark .funding-wrapper {
+    background-color: $gray-500;
+}
+.funding-meter {
+    width: calc(0% + 50px);
+    height: 100%;
+    border-radius: 25px;
+    background-color: $red-4;
+    color: $white;
+    margin-left: -25px;
+    padding-top: 7px;
+    font-weight: bold;
+
+}
+body.dark .funding-meter {
+    background-color: $link-color-dark;
+    color: $black;
+}
+.minimal-fund-mark {
+    left: 20%;
+    margin-left: -25px;
+    height: 100%;
+    width: 3px;
+    background-color: $gray-700;
+    position: absolute;
+}
+
+.fund-labels {
+    text-align: left;
+    position: relative;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.minimal-fund-label {
+    left: calc(20% - 25px);
+    width: unset;
+    position: absolute;
+    transform:translateX(-50%);
+}
+.optimal-fund-label {
+    position: relative;
+    left: calc(100% - 25px - 30px);
+}
+
+.payment-qrcode {
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.payment-address {
+    font-family: monospace;
+    word-wrap: break-word;
+}
+.payment-note {
+    font-size: 10pt;
+}

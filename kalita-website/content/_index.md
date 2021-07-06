@@ -28,19 +28,19 @@ img = "restore_screen.png"
 
 [[extra.list]]
 title = "Security"
-content = 'We build wallet with credo <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">"Not your keys, not your coins"</a>. Private keys are kept in encrypted storage locally on your device.'
+content = 'We build wallet with the credo <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">"Not your keys, not your coins"</a>. Private keys are kept in encrypted storage locally on your device.'
 
 [[extra.list]]
 title = "Privacy"
-content = '<a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">No public keys are sent</a> to server to prevent surveillance. Tor feature will hide your network address.'
+content = '<a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">No public keys are sent</a> to the server to prevent surveillance. Tor feature will hide your network address.'
 
 [[extra.list]]
 title = "Use everywhere"
-content = 'Manage your coins with mobile Android/iOS and with desktop Windows/Linux/MacOS.'
+content = 'Manage your coins with mobile Android/iOS and with desktop Windows/Linux/macOS.'
 
 [[extra.list]]
 title = "Atomic Swap"
-content = "Exchange coins without third party with onchain Atomic Swaps."
+content = "Exchange coins without a third party with on-chain Atomic Swaps."
 
 [[extra.list]]
 title = "Mixer"
@@ -55,14 +55,14 @@ tittle = "Raising funds"
 date = "Q3 2021"
 icon = "roadmap/raising_funds.png"
 class = "funds-icon"
-content = "Description of design choices. Contact with community and adjusting features for it demand. Collection of funds for a full time occupation for the wallet. Failure of fund raising won't stop developing, but will slow down significantly."
+content = "Description of design choices. Contact with the community and adjusting features for its demand. Collection of funds for a full-time occupation for the wallet. Failure of fundraising won't stop developing but will slow down significantly."
 
 [[extra.roadpoint]]
 tittle = "Basic wallet"
 date = "Q4 2021"
 icon = "roadmap/android.png"
 class = "android-icon"
-content = "Basic wallet that can send/receive Ergo in Android devices. Encryption with Android Keystore system."
+content = "A basic wallet that can send/receive Ergo on Android devices. Encryption with Android Keystore system."
 
 [[extra.roadpoint]]
 tittle = "Tokens"
@@ -83,14 +83,14 @@ tittle = "Desktop"
 date = "Q3 2022"
 icon = "roadmap/desktop.png"
 class = "desktop-icon"
-content = "Add desktop platform (Windows, MacOS, Linux), encryption of keys storage on disk, packaging for target platforms."
+content = "Add desktop platform (Windows, macOS, Linux), encryption of keys stored on disk, packaging for target platforms."
 
 [[extra.roadpoint]]
 tittle = "Mix"
 date = "Q4 2022"
 icon = "roadmap/mix.png"
 class = "mix-icon"
-content = "Integration of Ergo Mixer into wallet, design restore system for mix results."
+content = "Integrate Ergo Mixer into the wallet, design a restore system for mixing results."
 
 [[extra.roadpoint]]
 tittle = "Bitcoin"
@@ -104,13 +104,13 @@ tittle = "Atomic swap"
 date = "Q2-Q4 2023"
 icon = "roadmap/atomic_swap.png"
 class = "swap-icon"
-content = "Bitcoin-Ergo atomic swap with swap requests desk on wallet backend side. Addition of tokens swapping."
+content = "Bitcoin-Ergo atomic swap with swap requests desk on the wallet backend side. Addition of tokens swapping."
 
 [[extra.team]]
 name = "Anton Gushcha"
 avatar = "team/ncrashed.jpg"
 role = "Team lead. Founder"
-bio = "Senior Haskell and Rust developer with more than 6 years of commercial experience. He is an early adopter of cryptocurrencies and appreciates Ergo elaboration on Bitcoin core technical, economical and ideological aspects. Anton has fullstack experience with web, mobile and backend development alongside with cryptographic and security expertise."
+bio = "Senior Haskell and Rust developer with more than 6 years of commercial experience. He is an early adopter of cryptocurrencies and appreciates Ergo's elaboration on Bitcoin's core technical, economical, and ideological aspects. Anton has full-stack experience with web, mobile, and backend development alongside cryptographic and security expertise."
 github = "ncrashed"
 email = "ncrashed@protonmail.com"
 telegram = "ncrashed"
@@ -119,7 +119,7 @@ telegram = "ncrashed"
 name = "Anatoly Nardid"
 avatar = "team/nazgull08.jpg"
 role = "Fullstack Developer"
-bio = "Senior Haskell developer. Anatoly has 5 years of development in different commercial projects including cryptocurrencies. He has rich experience with UI design and creation of high quality scientific papers."
+bio = "Senior Haskell developer. Anatoly has 5 years of development in different commercial projects including cryptocurrencies. He has rich experience with UI design and the creation of high-quality scientific papers."
 github = "nazgull08"
 telegram = "@ponytailsonmyhead"
 
@@ -127,7 +127,7 @@ telegram = "@ponytailsonmyhead"
 name = "Levon Oganyan"
 avatar = "team/lemarwin.png"
 role = "Fullstack Developer"
-bio = "Senior Haskell developer and middle Rust developer. He has more that 5 years of commercial development in different fields and completed Masters degree in technical University of Munich with the thesis project on Hyperledger blockchain. He has heard about Bitcoin first in 2010 and ignored it. The regret pushed Levon to focus on crypto and to make sure not to miss the next big opportunity."
+bio = "Senior Haskell developer and middle Rust developer. He has more than 5 years of commercial development in different fields and completed a Master's degree in the Technical University of Munich with the thesis project on Hyperledger blockchain. He has heard about Bitcoin first in 2010 and ignored it. The regret pushed Levon to focus on crypto and to make sure not to miss the next big opportunity."
 github = "LeMarwin"
 
 [[extra.team]]

@@ -1,28 +1,10 @@
 .roadmap-section {
     width: 100%;
-    background-color: $gray-50;
     margin-top: 70px;
-    transform: skewY(1deg);
-}
-.roadmap-inner-section {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: $gray-75;
-    transform: skewY(1deg);
-}
-.roadmap-container {
-    transform: skewY(-2deg);
 }
 
 .roadmap-tittle {
     margin-bottom: 30px;
-}
-
-body.dark .roadmap-section {
-    background-color: $gray-850;
-}
-body.dark .roadmap-inner-section {
-    background-color: $gray-800;
 }
 
 .roadpoint-date {

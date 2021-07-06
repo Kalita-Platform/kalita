@@ -81,6 +81,15 @@ body.dark .funding-meter {
     left: calc(100% - 25px - 55px);
 }
 
+@media (max-width:960px) {
+    .minimal-fund-mark {
+        left: 40%;
+    }
+    .minimal-fund-label {
+        left: calc(40% - 25px);
+    }
+}
+
 .payment-qrcode {
     width: 80%;
     margin-top: 10px;

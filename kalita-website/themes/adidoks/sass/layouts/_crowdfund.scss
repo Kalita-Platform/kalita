@@ -28,6 +28,9 @@ body.dark .crowdfund-inner-section {
 .raised-amount {
     color: $red-3;
 }
+body.dark .raised-amount {
+    color: $link-color-dark;
+}
 
 .funding-wrapper {
     border-radius: 25px;

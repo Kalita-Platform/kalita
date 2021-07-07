@@ -282,9 +282,18 @@
       <main class="docs-content col-lg-11 col-xl-9">
         <h1>Backend</h1>
         
-        <h2 id="compact-filters">Compact filters</h2>
+        <p>Here we descibes what is happening behind the scene of wallet GUI. Unlike many wallets we provide exhaustive information about backend design </p>
+<h2 id="compact-filters">Compact filters</h2>
 <p>When one develops a light wallet, one of the most challenging tasks you face is finding which coins belong to a user. You cannot simply scan all blocks for user transactions as it defeats the &quot;lightness&quot; of the wallet. You cannot collect user public keys and send them to a remote server in exchange for related transactions as it destroys the user's privacy. </p>
-<p>So, we propose solution -- user agnostic <a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">compact filters</a>. They are specific kinds of index structures that we calculate for each block of a blockchain. They help the wallet answering the question: &quot;Are my coins located in the particular block?&quot;. Filters are produced once and don't reveal any information about the user that requests them. Also, they allow reducing the amount of consumed traffic by a factor of 400.</p>
+<div class="row justify-content-center">
+    <img src="/backend/filter_sync.svg">
+</div>
+<p>So, we propose solution — user agnostic <a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">compact filters</a>. They are specific kinds of index structures that we calculate for each block of a blockchain. They help the wallet answering the question: &quot;Are my coins located in the particular block?&quot;. Filters are produced once and don't reveal any information about the user that requests them. Also, they allow reducing the amount of consumed traffic by a factor of 400.</p>
+<p>Sync process of wallet consists of two phases:</p>
+<ol>
+<li>We fetch a bundle of filters from the indexer server and locally apply the filters to the user's public keys. We get a list of blocks that might contain transactions that belong to the wallet.</li>
+<li>Download and scan whole blocks from the previous step from an Ergo node. Filters can provide false-positive matches when there are no user-related transactions in the block. However, the rate is <a href="https://gist.github.com/sipa/576d5f09c3b86c3b1b75598d799fc845">tiny</a>, roughly one false positive for 100 thousand.</li>
+</ol>
 <h2 id="indexers">Indexers</h2>
 <div class="row justify-content-center">
     <img src="/backend/indexer_design.svg">
@@ -301,7 +310,7 @@
     <img src="/backend/indexers_network.svg">
 </div>
 <p>Transport protocol between two nodes based on Lightning Network <a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/08-transport.md">BOLT</a>. That compatibility between networks will allow us to implement payment channels for Ergo in the future and even implement sending payments directly between Lightning and Yam network.</p>
-<p>Each yam node has associated ID and public-private key pair that is used for </p>
+<p>Each yam node has a public-private key pair that the sender uses to envelop messages in <a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md">onion-like way</a>. Each hop removes one layer of encryption and sends it to the next node until the destination wallet receives the message.</p>
 
         
         

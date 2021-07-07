@@ -118,7 +118,7 @@ telegram = "ncrashed"
 [[extra.team]]
 name = "Anatoly Nardid"
 avatar = "team/nazgull08.jpg"
-role = "Fullstack Developer"
+role = "Full-stack Developer"
 bio = "Senior Haskell developer. Anatoly has 5 years of development in different commercial projects including cryptocurrencies. He has rich experience with UI design and the creation of high-quality scientific papers."
 github = "nazgull08"
 telegram = "@ponytailsonmyhead"
@@ -126,7 +126,7 @@ telegram = "@ponytailsonmyhead"
 [[extra.team]]
 name = "Levon Oganyan"
 avatar = "team/lemarwin.png"
-role = "Fullstack Developer"
+role = "Full-stack Developer"
 bio = "Senior Haskell developer and middle Rust developer. He has more than 5 years of commercial development in different fields and completed a Master's degree in the Technical University of Munich with the thesis project on Hyperledger blockchain. He has heard about Bitcoin first in 2010 and ignored it. The regret pushed Levon to focus on crypto and to make sure not to miss the next big opportunity."
 github = "LeMarwin"
 
@@ -137,6 +137,14 @@ role = "Backend Developer"
 bio = "Middle Haskell developer. He has overall 5 years of commercial development and 2 of them cryptocurrency-related."
 github = "Aminion"
 telegram = "@aminion116"
+
+[[extra.team]]
+name = "Vladimir Krutkin"
+avatar = "team/fastpok.jpg"
+role = "Full-stack Developer"
+bio = "He has a master's degree in computer science and applied mathematics from MIPT. Vladimir has been actively using cryptocurrencies since 2017 and has a broad range of skills thanks to his previous work as a front-end and back-end developer. His areas of expertise include Haskell, Python, HTML, CSS and JavaScript."
+github = "fastpok"
+telegram = "@fastpok"
 
 [extra.crowdfund]
 amount = 0 # Percent field set in css _crowdfund.scss in .funding-meter

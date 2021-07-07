@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="58.393559mm"
+   height="49.591629mm"
+   viewBox="0 0 58.393559 49.591629"
+   version="1.1"
+   id="svg1736"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="ergo_wallet.svg">
+  <defs
+     id="defs1730" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="79.604571"
+     inkscape:cy="114.36938"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g2304"
+     showgrid="false"
+     inkscape:object-paths="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-center="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:snap-bbox="false"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1716"
+     inkscape:window-height="1386"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0">
+    <sodipodi:guide
+       position="29.19678,28.145541"
+       orientation="0,1"
+       id="guide2300"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1733">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-52.454051,-57.863023)">
+    <g
+       id="g2304"
+       transform="translate(-4.9925153e-5,-5.0565056e-5)"
+       style="fill:none">
+      <path
+         sodipodi:nodetypes="cssssssc"
+         inkscape:connector-curvature="0"
+         id="rect2281"
+         transform="scale(0.26458333)"
+         d="m 415.17188,289.93164 v -48.56055 c -10e-6,-10.46926 -8.4272,-18.89648 -18.89649,-18.89648 H 220.92773 c -10.46926,0 -18.89648,8.42722 -18.89648,18.89648 v 116.75782 c 0,10.46926 8.42722,18.89843 18.89648,18.89843 h 46.49024"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:7.55905533;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cssccc"
+         inkscape:connector-curvature="0"
+         id="rect2290"
+         transform="scale(0.26458333)"
+         d="m 272.5664,288.63875 1e-5,-2.93563 c 2e-5,-10.46926 -8.42917,-18.89843 -18.89844,-18.89843 h -51.63672 v 63.57226 h 44.57031"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:7.55905533;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path2306"
+       cx="62.785313"
+       cy="79.002151"
+       r="4.0424514" />
+    <g
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1"
+       transform="matrix(0.58930211,0,0,0.58930211,9.0557341,47.816836)"
+       id="Group-16">
+      <g
+         transform="translate(112.42641,41.901348)"
+         id="Group-15"
+         style="fill:#000000;stroke:#000000">
+        <path
+           id="Fill-9"
+           d="m 11.16384,48.039 18.3336,7.3596 18.168,-7.7592 7.362,-18.3336 -7.7592,-18.168 -18.3336,-7.3608 -18.1728,7.7616 -7.3596,18.3324 z m 18.3516,10.7604 c -0.2064,0 -0.4152,-0.0396 -0.6084,-0.1176 L 9.31584,50.817 c -0.402,-0.1608 -0.7248,-0.4752 -0.8916,-0.8748 l -8.292,-19.4148 c -0.1716,-0.3996 -0.1764,-0.8472 -0.0132,-1.2516 L 7.98384,9.6846 C 8.14464,9.2826 8.45904,8.961 8.85864,8.7918 L 28.27344,0.501 c 0.3996,-0.1716 0.8496,-0.174 1.2528,-0.0132 l 19.59,7.8648 c 0.402,0.1608 0.7236,0.4752 0.8928,0.8748 l 8.2908,19.4112 c 0.1716,0.4008 0.1764,0.8484 0.0132,1.2528 l -7.8648,19.5912 c -0.1596,0.402 -0.474,0.7236 -0.8748,0.8916 l -19.4124,8.292 c -0.2088,0.0912 -0.426,0.1332 -0.6456,0.1332 z"
+           inkscape:connector-curvature="0"
+           style="fill:#000000;stroke:#000000" />
+        <polygon
+           points="37.95456,17.51856 37.95456,21.24456 25.76016,21.24456 33.43176,29.27736 25.58016,37.92456 37.95456,37.92456 37.95456,41.65056 20.47896,41.65056 20.47896,37.92456 28.25736,29.31336 20.51376,21.24456 20.51376,17.51856 "
+           id="Fill-10"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+  </g>
+</svg>

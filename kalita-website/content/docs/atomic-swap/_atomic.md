@@ -16,7 +16,53 @@ top = false
 
 
 ### Introdution
-An atomic swap is a smart contract technology that enables the exchange of one cryptocurrency for another without using centralized intermediaries, such as exchanges. This article will show the atomic swap between ergo and bitcoin.
+An atomic swap is a smart contract technology that provides a way to exchange one cryptocurrency for another without using centralized intermediaries, such as exchanges. Here we describe atomic swap protocol by example between Ergo and Bitcoin.
+There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin and give him a Bitcoin coin. Communication between parties is performed via encrypted connection in [Yam network](/docs/design/backend/#yam-network). The implementation relies on [HTLC (Hashed Timelock Contract)](https://www.investopedia.com/terms/h/hashed-timelock-contract.asp) and compatible with payment channels in [Lightning Network](https://lightning.network/lightning-network-paper.pdf).
+
+
+# New protocol.
+
+## Step 1. Order money proof.
+
+### Indexer. Creating order. 
+Алисе необходимо запруфать индексеру наличие денег пользователя в Эрго или Битке, чтобы нельзя было
+ддосить заявками без денег.
+Для доказательства индексатор выдает число Х, которое нужно подписать приватным ключом, и предоставить публичный ключ и UTXO, на котором есть >= средств, заявленных в ордере.
+Заявка хранит в себе цену и альткоин, на который будет может возможен обмен.
+Должен лежать хэш публичного ключа кошелька, по которому идёт связть через ям-сеть.
+
+### Indexer. Accepting order.
+Бобу необходимо запруфать индексеру, что у него есть количество денег в Битке или Эрго >= цены, указанной в ордере. До этого момента индексатор на ставит ордер в "выполняющийся" и не связывает Алису с Бобу. Используя ту же процедуру наличия денег.
+
+## Step 2.
+
+### Swap. Alice escrow.
+Боб связывается с Алисой, и Алиса повторяет процедуру наличия денег и присылает публичный ключ pk(Bob), по которому он будет забирать деньги у Алисы. Алиса создает скрипт (sc1) `or(and(pk(Bob),sha256(secret)),and(pk(Alice),after(256)))` в котором либо Боб забирает деньги, пользуясь pk(b1) и секретом, либо спустя 256 блоков деньги возвращаются Алисе.
+
+По этому скрипту (sc1) создает P2WSH-адрес, на который Алиса отправляет деньги. Ссылку (Id блока, Id транзы, номер выхода) на UTXO этого адреса и сериализованный скрипт (sc1) отправляется ямщиком Бобу.
+
+Боб должен проверить этот P2WSH-адрес, что он заблокирован на хэш скрипта (sc1). Читая скрипт, Боб получает публичный ключ Алисы pk(Alice) и хэш секрета sha256(secret), и проверяет, что он может забрать по своему секрету и что рефанд часть Алисы заблочена по времени не меньше чем на 256 блоков.
+
+### Swap. Bob escrow.
+
+После этого Боб создает в Эрго-скрипт (sc2)
+`or(and(pk(Alice),sha256(secret)),and(pk(Bob),after(128)))`
+в котором публичный ключ Алисы pk(Alice), хэш секрета sha256(secret) и refund-часть, которая позволит вернуть деньги Бобу через 128 блоков в Эрго-сети.
+
+По этому скрипту (sc2) создает Эрго-аналог P2WSH-адрес, на который Боб отправляет деньги. Ссылку в эрго-блокчейне (Id блока, id бокса) на UTXO этого адреса и сериализованный эрго-скрипт (sc2) отправляется ямщиком Алисе.
+
+Алиса проверяет эрго-аналог P2WSH-адрес, что он заблокирован на хэш скрипта (sc2). Читая скрипт, Алиса получает публичный ключ Боба pk(Bob) и проверят, что sc2 заблочен на её публичный ключ pk(Alice), и что рефанд часть Боба заблочена по времени не меньше чем на 128 блоков.  
+
+### Swap. Redeeming.
+
+Алиса забирает свои эрго публикуя транзакцию со redeem-скриптом (sc2), где аргументом идёт праобраз хэша (секрет), для ветки: `and(pk(Alice),sha256(secret))`.
+Секрет попадает в блокчейн, где Боб может его считать.
+В случае, если Алиса не предпренимает никаких действий и не забирает Эрго, то согласно скрипту (sc2), Боб забирает свои эрго через 128 блоков, по ветке: `and(pk(Bob),after(128))`.
+В случае публикации секрета, Боб, пользуясь опбуликованным праобразом публикует транзакцию по скрипту (sc1) с праобразом в аргументах и забирает битки по ветке: `and(pk(Bob),sha256(secret))`.
+Если Боб не укладывается в 256 блоков битка, Алиса забирает и полученные эрго, и битки, публиикуя транзу, по скрипту (sc1) по ветке: `and(pk(Alice),after(256))`.
+В случае, если Алиса вообще не публикует транзакцию с секретом и не забирает Ерго, то после 128 блоков, Боб может забрать свои деньги, а после 256 - Алиса.
+
+
 
 ### Step 1. Creating order.
 - Alice forms a order for the exchange of BTC <-> Ergo.

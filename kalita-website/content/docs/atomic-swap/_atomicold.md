@@ -20,12 +20,11 @@ An atomic swap is a smart contract technology that provides a way to exchange on
 There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin and give him a Bitcoin coin. Communication between parties is performed via encrypted connection in [Yam network](/docs/design/backend/#yam-network). The implementation relies on [HTLC (Hashed Timelock Contract)](https://www.investopedia.com/terms/h/hashed-timelock-contract.asp) and compatible with payment channels in [Lightning Network](https://lightning.network/lightning-network-paper.pdf).
 
 
-### Step 1. Order money proof.
-Atomic swap orders are created on the wallet and published on indexers via the yam network. To protect the network from the influx of empty orders and a potential DDoS attack, Alice must provide proof of ownership of the funds that she intends to exchange. This is done as follows: when creating an order, Alice sends a request to the indexer with a specified amount for exchange and receives in response some number X, which must be signed with a private key and sent back to the indexer along with the public key and UTXO, which contains funds exceeding the amount declared for exchange, as well as the price for the exchange in the number of requested altcoins. If the indexer confirms the ownership of the funds and the validity of the request, then an order is formed on it, consisting of the volume of currency, the price, and the hash of the public key of the wallet, which is connected through the yam network.
+# New protocol.
 
+## Step 1. Order money proof.
 
-
-#### Indexer. Creating order.
+### Indexer. Creating order. 
 Алисе необходимо запруфать индексеру наличие денег пользователя в Эрго или Битке, чтобы нельзя было
 ддосить заявками без денег.
 Для доказательства индексатор выдает число Х, которое нужно подписать приватным ключом, и предоставить публичный ключ и UTXO, на котором есть >= средств, заявленных в ордере.

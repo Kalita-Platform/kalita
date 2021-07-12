@@ -28,11 +28,12 @@ img = "restore_screen.png"
 
 [[extra.list]]
 title = "Security"
-content = 'We build wallet with the credo <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">"Not your keys, not your coins"</a>. Private keys are kept in encrypted storage locally on your device.'
+content = 'We build wallet with the credo <a href="/docs/design/keys">"Not your keys, not your coins"</a>. Private keys are kept in encrypted storage locally on your device.'
+
 
 [[extra.list]]
 title = "Privacy"
-content = '<a href="https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki">No public keys are sent</a> to the server to prevent surveillance. Tor feature will hide your network address.'
+content = '<a href="/docs/design/backend/#compact-filters">No public keys are sent</a> to the server to prevent surveillance. Tor feature will hide your network address.'
 
 [[extra.list]]
 title = "Use everywhere"

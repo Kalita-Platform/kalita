@@ -16,7 +16,7 @@ top = false
 
 
 ### Introdution
-An atomic swap is a smart contract technology that provides a way to exchange one cryptocurrency for another without using centralized intermediaries, such as exchanges. 
+An atomic swap is a smart contract technology that provides a way to exchange one cryptocurrency for another without using centralized intermediaries, such as exchanges.
 
 Here we describe atomic swap protocol by example between Ergo and Bitcoin. There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin and give him a Bitcoin coin. Communication between parties is performed via encrypted connection in [Yam network](/docs/design/backend/#yam-network). The implementation relies on [HTLC (Hashed Timelock Contract)](https://www.investopedia.com/terms/h/hashed-timelock-contract.asp) and compatible with payment channels in [Lightning Network](https://lightning.network/lightning-network-paper.pdf).
 
@@ -27,12 +27,12 @@ Here we describe atomic swap protocol by example between Ergo and Bitcoin. There
     <img src="/docs/atomic/creating_order.svg">
 </div>
 
-Atomic swap orders are created on the wallet and published on indexers via the yam network. Alice must [prove ownership](#appendix-a-p2wsh-ownership) of the funds that she intends to exchange that protect the network from the influx of empty orders (spoofing). 
+Atomic swap orders are created on the wallet and published on indexers via the yam network. Alice must [prove ownership](#appendix-a-p2wsh-ownership) of the funds that she intends to exchange that protect the network from the influx of empty orders (spoofing).
 
-Alice requests the indexer with a specified amount for exchange and receives in response a random nonce. Alice signs the nonce with a private key that locks P2WSH UTXO and sends back the corresponding public key, reference to the UTXO, and the price for the exchange in the number of requested altcoins. 
+Alice requests the indexer with a specified amount for exchange and receives in response a random nonce. Alice signs the nonce with a private key that locks P2WSH UTXO and sends back the corresponding public key, reference to the UTXO, and the price for the exchange in the number of requested altcoins.
 
 Yum node validates the ownership of the funds and publishes the new order in its liquidity pool. The order contains:
-- Currency codes 
+- Currency codes
 - Bitcoin and Ergo amounts
 - Proof of UTXO ownership
 
@@ -63,7 +63,7 @@ The script consists of two branches:
 <img src="/docs/atomic/script1.svg">
 </div>
 
-Alice sends funds to the script **(sc1)** using the P2WSH address. A UTXO link (block ID, transaction ID, output number) and the serialized script **(sc1)** is sent to Bob via the Yam network. Bob must check that Alice locked the required amount of funds to the P2WSH address and that the address corresponds to the hash of the script **(sc1)**. 
+Alice sends funds to the script **(sc1)** using the P2WSH address. A UTXO link (block ID, transaction ID, output number) and the serialized script **(sc1)** is sent to Bob via the Yam network. Bob must check that Alice locked the required amount of funds to the P2WSH address and that the address corresponds to the hash of the script **(sc1)**.
 
 Bob learns Alice's public key **pk(Alice)** and the hash of the secret **sha256(secret)** by reading the script. Also, Bob ensures that Alice can refund after 256 blocks in the future so Bob can finish the swap before the deadline. If these conditions fail, Bob aborts the exchange.
 
@@ -109,9 +109,22 @@ The script **(sc2)** creates an Ergo P2SH address to which Bob sends money. A li
 
 Alice broadcasts a transaction that moves her Ergo from box **(sc2)** where the argument is the original hash **secret**. The secret goes to the Ergo blockchain and becomes public. Bob learns the **secret** and publishes a transaction according to the script **(sc1)** and withdraws his Bitcoin.
 
+### Proof of ownership.
+
+#### BTC.
+In order to prove her ownership of bitcoins, Alice, in response to a request to create an order, receives a special nonce **X** from the indexer, which is a long string.
+Ownership proof algorythm:
+1. Create new P2WSH address by public key **pk(Alice)**.
+2. Get a nonce **X** from indexer.
+3. Sign **X** by **pk(Alice)**, and send it to indexer.
+4. Indexer check that **pk(Alice)** from **X** is same as at P2WSH address.
+
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/checkownership.svg">
+</div>
+
 ### Abort scenario
 
 If Alice does not publish a transaction with a secret and does not receive Ergo, Bob takes back his Ergo after 640 blocks, and Alice takes back her Bitcoin after 256 blocks.
 
 Consider that Alice has published the **secret**. If Bob does not fit into 256 Bitcoin blocks, Alice takes both the Ergo and her Bitcoin back using the refund branch in the script **(sc1)**.
-

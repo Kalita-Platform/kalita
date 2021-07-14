@@ -299,28 +299,29 @@
       <main class="docs-content col-lg-11 col-xl-9">
         <h1>Keys management</h1>
         
-        <p>Kalita is a <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">non-custodial</a> wallet that means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your <a href="/docs/design/backup">backup seed</a>.</p>
+        <p>Kalita is a <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">non-custodial</a> wallet. That means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your <a href="/docs/design/backup">backup seed</a>.</p>
 <h1 id="seed">Seed</h1>
-<p>The main secret your wallet is a <a href="https://en.bitcoin.it/wiki/Seed_phrase">seed phrase</a>. It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.</p>
+<p>The main secret of your wallet is a <a href="https://en.bitcoin.it/wiki/Seed_phrase">seed phrase</a>. It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.</p>
 <div class="row screen-pic">
     <img src="/seed_screen.png">
 </div>
-<p>The best way to store your seed phrase is to write it down on paper. The following ideas are likely are not the best ones:</p>
+<p>The best way to store your seed phrase is to write it down on paper or something <a href="https://wiki.trezor.io/Cryptosteel">more durable</a>. The following ideas are likely are not the best ones:</p>
 <ul>
-<li>If you take a photo or screenshot of the seed, the picture can be easily lost or leaked, and you will lose your funds.</li>
-<li>If you place the seed in a cloud or other online storage, the cloud provider or social engineering can sweep your wallet. At least the seed must be <a href="https://www.gnupg.org/gph/en/manual/x110.html">GPG encrypted</a>, but you definitely should be aware of unobvious attack vectors (like keyloggers or side-channel attacks). So, do it only if you know what you are doing.</li>
+<li>If you take a photo or a screenshot of the seed, the picture can be easily lost or leaked, and you will lose your funds.</li>
+<li>If you place the seed in a cloud or other online storage, the cloud provider or social engineering can sweep your wallet. At the bare minimum the seed must be <a href="https://www.gnupg.org/gph/en/manual/x110.html">GPG encrypted</a>, but you definitely should be aware of unobvious attack vectors (like keyloggers or side-channel attacks). So, do it only if you know what you are doing.</li>
 </ul>
 <h1 id="key-tree">Key tree</h1>
-<p>The next step in the wallet overview is the keys derivation mechanism. The seed phrase produces for the generation of an infinite tree of public and private keys. We use widely adopted standards for deterministic derivation from the Bitcoin world, such as <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>, <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a>, <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">SLIP44</a>, and <a href="https://github.com/ergoplatform/eips/blob/master/eip-0003.md">EIP3</a>.</p>
+<p>The next step in the wallet overview is the keys derivation mechanism. The seed phrase generates an infinite tree of public and private keys. We use widely adopted standards for deterministic derivation from the Bitcoin world, such as <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>, <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a>, <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">SLIP44</a>. In addition, our implementation is <a href="https://github.com/ergoplatform/eips/blob/master/eip-0003.md">EIP3</a> compliant.</p>
+<p>The derivation scheme allows you to generate a new key for each new transaction and organize key chains by purpose. What is even handier, you can restore all your keys and funds using only the seed phrase. Another great opportunity is that you can create a <a href="https://www.quora.com/What-does-watch-only-mean-in-Blockchain-wallet">watch-only</a> wallet and keep your private keys in an <a href="https://en.bitcoin.it/wiki/Cold_storage">air-gapped</a> device.</p>
 <div class="row">
     <img src="/keys/derivation_tree.svg">
 </div>
-<p>The wallet derives two root keys instantly after the generation of a new mnemonic.  They are called <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#extended-keys">extended keys</a>, one is the root public key, and the second one is for the private root key. Wallet derives the keys according to given <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#master-key-generation">derivation path</a> in the key tree:</p>
+<p>The wallet derives two root keys after the generation of a new mnemonic.  They are called <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#extended-keys">extended keys</a>, one is the root public key, and the second one is for the private root key. The wallet derives the keys according to given <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#master-key-generation">derivation path</a> in the key tree:</p>
 <pre><code>m/44'/429'/0'
 </code></pre>
 <ul>
 <li>The <strong>m</strong> stands for <strong>Master Node</strong> layer that is derived directly from the wallet seed.</li>
-<li>The <strong>44'</strong> part stands for <strong>purpose</strong> part from <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a> and marks that we support that standard. The extra tick symbol marks that we apply additional hardening to the layer, so some <a href="https://medium.com/@blainemalone01/hd-wallets-why-hardened-derivation-matters-89efcdc71671">subtle attacks</a> not possible.</li>
+<li>The <strong>44'</strong> part stands for <strong>purpose</strong> part from <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a> and marks that we support that standard. The extra tick symbol marks that we apply additional hardening to the layer, so that some <a href="https://medium.com/@blainemalone01/hd-wallets-why-hardened-derivation-matters-89efcdc71671">subtle attacks</a> are not possible.</li>
 <li>The <strong>429'</strong> part refers to <strong>Ergo</strong> currency in <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">SLIP44</a> and <a href="https://github.com/ergoplatform/eips/blob/master/eip-0003.md">EIP3</a> standards.</li>
 <li>The last <strong>0'</strong> marks that the wallet is first in the tree. We are going to support multiple wallets/accounts per mnemonic in the future.</li>
 </ul>
@@ -331,7 +332,7 @@
 <li><a href="/docs/atomic-swap/atomic">Atomic swaps</a> chain produces addresses for escrow smart contracts. The chain has to contain only funds temporarily locked in swaps.</li>
 </ol>
 <h1 id="storage">Storage</h1>
-<p>The wallet defines two types of sensitive data. Public data is crucial for user privacy, but a wallet can keep it in memory for a long time. For instance, the wallet needs public keys for detecting incoming transactions and the generation of new addresses. The private keys can spend your funds, so the wallet must keep them unencrypted only for a brief moment of transaction signing.</p>
+<p>The wallet defines two types of sensitive data. Public data is crucial for user privacy, but a wallet can keep it in memory for a long time. For instance, the wallet needs public keys to detect incoming transactions and generate new addresses. The private keys can spend your funds, so the wallet must keep them unencrypted only for a brief moment of transaction signing.</p>
 <h2 id="private-storage">Private storage</h2>
 <p>We provide a specific implementation of the private storage for each supported platform.</p>
 <p>In <strong>Android</strong>, we use <a href="https://developer.android.com/training/articles/keystore.html">Keystore API</a> to store an <a href="https://datatracker.ietf.org/doc/html/rfc5116#section-5.2">AES key</a> that encrypts the private keys.</p>

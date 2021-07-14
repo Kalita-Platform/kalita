@@ -298,7 +298,7 @@
   							
   									<ul>
   											
-  											<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#btc">BTC.</a></li>
+  											<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#btc">BTC</a></li>
   											
   									</ul>
   							
@@ -317,24 +317,25 @@
         
         <h3 id="introdution">Introdution</h3>
 <p>An atomic swap is a smart contract technology that provides a way to exchange one cryptocurrency for another without using centralized intermediaries, such as exchanges.</p>
-<p>Here we describe atomic swap protocol by example between Ergo and Bitcoin. There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin and give him a Bitcoin coin. Communication between parties is performed via encrypted connection in <a href="/docs/design/backend/#yam-network">Yam network</a>. The implementation relies on <a href="https://www.investopedia.com/terms/h/hashed-timelock-contract.asp">HTLC (Hashed Timelock Contract)</a> and compatible with payment channels in <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Network</a>.</p>
+<p>Here we describe atomic swap protocol by example between Ergo and Bitcoin. There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin in exchange for a Bitcoin coin. Communication between parties is performed via encrypted connection in <a href="/docs/design/backend/#yam-network">Yam network</a>. The implementation relies on <a href="https://www.investopedia.com/terms/h/hashed-timelock-contract.asp">HTLC (Hashed Timelock Contract)</a> and compatible with payment channels in <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Network</a>.</p>
 <h3 id="step-1-creating-order">Step 1. Creating order.</h3>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
     <img src="/docs/atomic/creating_order.svg">
 </div>
-<p>Atomic swap orders are created on the wallet and published on indexers via the yam network. Alice must <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove ownership</a> of the funds that she intends to exchange that protect the network from the influx of empty orders (spoofing).</p>
-<p>Alice requests the indexer with a specified amount for exchange and receives in response a random nonce. Alice signs the nonce with a private key that locks P2WSH UTXO and sends back the corresponding public key, reference to the UTXO, and the price for the exchange in the number of requested altcoins.</p>
-<p>Yum node validates the ownership of the funds and publishes the new order in its liquidity pool. The order contains:</p>
+<p>Atomic swap orders are created on the wallet and published on indexers via the Yam network. Alice must <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove ownership</a> of the funds that she intends to exchange. That protects the network from the influx of empty orders (spoofing).</p>
+<p>Alice requests the indexer with a specified amount for exchange and receives in response a random nonce. Alice signs the nonce with a private key that locks P2WPKH UTXO and sends back the corresponding public key, reference to the UTXO, and the price for the exchange in the number of requested Ergo.</p>
+<p>Yam node validates the ownership of the funds and publishes the new order in its liquidity pool. The order contains:</p>
 <ul>
 <li>Currency codes</li>
 <li>Bitcoin and Ergo amounts</li>
 <li>Proof of UTXO ownership</li>
 </ul>
+<p>The order doesn't include a hash of the public key of Alice's wallet, forcing Bob to communicate with the node that hosted the order. Otherwise, Bob could bypass the indexer and start the swap directly by sending messages via other yam nodes.</p>
 <h3 id="step-2-accepting-order">Step 2. Accepting order.</h3>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
     <img src="/docs/atomic/accepting_order.svg">
 </div>
-<p>Bob also needs to <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove</a> that he has enough funds in Ergo to accept the order. After Bob has demonstrated that he has the funds, the indexer puts the order in the &quot;running&quot; state and connects Alice with Bob by sending him a hash of the session key that plays the <a href="(/docs/design/backend/#routing)">role</a> of destination ID in the Yam network.</p>
+<p>Bob also needs to <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove</a> that he has enough funds in Ergo to accept the order. After Bob has demonstrated that he has the funds, the indexer puts the order in the &quot;running&quot; state and connects Alice with Bob by sending him a hash of the session key that plays the <a href="/docs/design/backend/#routing">role</a> of destination ID in the Yam network.</p>
 <h3 id="step-3-alice-s-escrow">Step 3. Alice's escrow.</h3>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/yam_order.svg">
@@ -351,7 +352,7 @@
 <img src="/docs/atomic/script1.svg">
 </div>
 <p>Alice sends funds to the script <strong>(sc1)</strong> using the P2WSH address. A UTXO link (block ID, transaction ID, output number) and the serialized script <strong>(sc1)</strong> is sent to Bob via the Yam network. Bob must check that Alice locked the required amount of funds to the P2WSH address and that the address corresponds to the hash of the script <strong>(sc1)</strong>.</p>
-<p>Bob learns Alice's public key <strong>pk(Alice)</strong> and the hash of the secret <strong>sha256(secret)</strong> by reading the script. Also, Bob ensures that Alice can refund after 256 blocks in the future so Bob can finish the swap before the deadline. If these conditions fail, Bob aborts the exchange.</p>
+<p>Bob learns Alice's public key <strong>pk(Alice)</strong> and the hash of the secret <strong>sha256(secret)</strong> by reading the script. Also, Bob ensures that Alice can refund no sooner than after 256 blocks in the future so Bob can finish the swap before the deadline. If these conditions fail, Bob <a href="/docs/atomic-swap/atomic/#abort-scenario">aborts</a> the exchange.</p>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/yam_script1.svg">
 </div>
@@ -371,13 +372,13 @@
 </code></pre>
 <p>The script consists of two branches:</p>
 <ul>
-<li><code>allOf(Coll(pkA, secret.size &lt; 33, sha256(secret) == secret_hash))</code> where Alice takes money using <strong>pk(Alice)</strong> and <strong>sha256(secret)</strong>. Size check prevents an attack when Alice uses secret larger that is allowed to embed in Ergo transaction.</li>
+<li><code>allOf(Coll(pkA, secret.size &lt; 33, sha256(secret) == secret_hash))</code> where Alice takes money using <strong>pk(Alice)</strong> and <strong>sha256(secret)</strong>. Size check prevents an attack when Alice uses secret larger than is allowed to embed in Ergo transaction.</li>
 <li><code>pkB &amp;&amp; HEIGHT &gt; 640</code> if Alice does not withdraw money after 640 Ergo blocks (the equalivent of 128 Bitcoin blocks), Bob can withdraw money using his public key <strong>pk(Bob)</strong>.</li>
 </ul>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/script2.svg">
 </div>
-<p>The script <strong>(sc2)</strong> creates an Ergo P2SH address to which Bob sends money. A link in the ergo blockchain (block Id, box Id) to the UTXO of this address and the serialized ergo script <strong>(sc2)</strong> are sent to Alice via the Yam network. Alice checks the address corresponds to <strong>(sc2)</strong> script. While reading the script, Alice receives Bob's public key <strong>pk(Bob)</strong> and checks that <strong>(sc2)</strong> is locked to her public key <strong>pk(Alice)</strong>, and that Bob's refund part is locked in time for at least 128 blocks, and that the amount of money is correct specified in the order. If these conditions fail, Alice aborts the exchange.</p>
+<p>The script <strong>(sc2)</strong> creates an Ergo P2SH address to which Bob sends money. A link in the ergo blockchain (block Id, box Id) to the UTXO of this address and the serialized ergo script <strong>(sc2)</strong> are sent to Alice via the Yam network. Alice checks that the address corresponds to the <strong>(sc2)</strong> script. Alice receives Bob's public key <strong>pk(Bob)</strong> from the script and checks that <strong>(sc2)</strong> is locked to her public key <strong>pk(Alice)</strong>, and that Bob's refund part is locked in time for at least 128 blocks, and that the amount of money is as specified in the order. If these conditions fail, Alice <a href="/docs/atomic-swap/atomic/#abort-scenario">aborts</a> the exchange.</p>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/yam_script2.svg">
 </div>
@@ -385,23 +386,22 @@
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/atomic_map.svg">
 </div>
-<p>Alice broadcasts a transaction that moves her Ergo from box <strong>(sc2)</strong> where the argument is the original hash <strong>secret</strong>. The secret goes to the Ergo blockchain and becomes public. Bob learns the <strong>secret</strong> and publishes a transaction according to the script <strong>(sc1)</strong> and withdraws his Bitcoin.</p>
+<p>Alice broadcasts a transaction that moves her Ergo from the box <strong>(sc2)</strong> with the original hash <strong>secret</strong> as an argument. The secret goes to the Ergo blockchain and becomes public. Bob learns the <strong>secret</strong> and publishes a transaction according to the script <strong>(sc1)</strong> and withdraws his Bitcoin.</p>
 <h3 id="proof-of-ownership">Proof of ownership.</h3>
-<h4 id="btc">BTC.</h4>
-<p>In order to prove her ownership of bitcoins, Alice, in response to a request to create an order, receives a special nonce <strong>X</strong> from the indexer, which is a long string.
-Ownership proof algorythm:</p>
+<h4 id="btc">BTC</h4>
+<p>To prove ownership of bitcoins Alice has to follow these steps:</p>
 <ol>
-<li>Create new P2WSH address by public key <strong>pk(Alice)</strong>.</li>
-<li>Get a nonce <strong>X</strong> from indexer.</li>
-<li>Sign <strong>X</strong> by <strong>pk(Alice)</strong>, and send it to indexer.</li>
-<li>Indexer check that <strong>pk(Alice)</strong> from <strong>X</strong> is same as at P2WSH address.</li>
+<li>Create new P2WPKH address with public key <strong>pk(Alice)</strong>.</li>
+<li>Get a long random string called <strong>nonce</strong> from indexer.</li>
+<li>Sign <strong>nonce</strong> with <strong>pk(Alice)</strong> and send the signature to the indexer.</li>
+<li>The indexer checks that <strong>nonce</strong> is signed with the same key <strong>pk(Alice)</strong> that was used to create the P2WPKH address.</li>
 </ol>
 <div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
 <img src="/docs/atomic/checkownership.svg">
 </div>
 <h3 id="abort-scenario">Abort scenario</h3>
-<p>If Alice does not publish a transaction with a secret and does not receive Ergo, Bob takes back his Ergo after 640 blocks, and Alice takes back her Bitcoin after 256 blocks.</p>
-<p>Consider that Alice has published the <strong>secret</strong>. If Bob does not fit into 256 Bitcoin blocks, Alice takes both the Ergo and her Bitcoin back using the refund branch in the script <strong>(sc1)</strong>.</p>
+<p>If Alice does not publish a transaction with a secret taking her Ergo, Bob takes back the Ergo after 640 blocks, and Alice takes back her Bitcoin after 256 blocks.</p>
+<p>If Alice has published the <strong>secret</strong> and Bob did not redeem the Bitcoin within 256 blocks, Alice takes both the Ergo and her Bitcoin back using the refund branch in the script <strong>(sc1)</strong>.</p>
 
         
         

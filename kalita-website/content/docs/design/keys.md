@@ -23,7 +23,7 @@ The main secret of your wallet is a [seed phrase](https://en.bitcoin.it/wiki/See
     <img src="/seed_screen.png">
 </div>
 
-The best way to store your seed phrase is to write it down on paper or something [more durable](https://wiki.trezor.io/Cryptosteel). The following ideas are likely are not the best ones:
+The best way to store your seed phrase is to write it down on paper or something [more durable](https://wiki.trezor.io/Cryptosteel). The following ideas are likely not the best:
 * If you take a photo or a screenshot of the seed, the picture can be easily lost or leaked, and you will lose your funds.
 * If you place the seed in a cloud or other online storage, the cloud provider or social engineering can sweep your wallet. At the bare minimum the seed must be [GPG encrypted](https://www.gnupg.org/gph/en/manual/x110.html), but you definitely should be aware of unobvious attack vectors (like keyloggers or side-channel attacks). So, do it only if you know what you are doing.
 

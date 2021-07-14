@@ -291,7 +291,7 @@
         
         <p>Kalita is a <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">non-custodial</a> wallet that means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your <a href="/docs/design/backup">backup seed</a>.</p>
 <h1 id="seed">Seed</h1>
-<p>The main secret your wallet has a <a href="https://en.bitcoin.it/wiki/Seed_phrase">seed phrase</a>. It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.</p>
+<p>The main secret your wallet is a <a href="https://en.bitcoin.it/wiki/Seed_phrase">seed phrase</a>. It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.</p>
 <div class="row screen-pic">
     <img src="/seed_screen.png">
 </div>
@@ -324,7 +324,7 @@
 <h1 id="storage">Storage</h1>
 <p>The wallet defines two types of sensitive data. Public data is crucial for user privacy, but a wallet can keep it in memory for a long time. For instance, the wallet needs public keys for detecting incoming transactions and the generation of new addresses. The private keys can spend your funds, so the wallet must keep them unencrypted only for a brief moment of transaction signing.</p>
 <h2 id="private-storage">Private storage</h2>
-<p>We provide a specific implementation of the private storage for each supported platform. </p>
+<p>We provide a specific implementation of the private storage for each supported platform.</p>
 <p>In <strong>Android</strong>, we use <a href="https://developer.android.com/training/articles/keystore.html">Keystore API</a> to store an <a href="https://datatracker.ietf.org/doc/html/rfc5116#section-5.2">AES key</a> that encrypts the private keys.</p>
 <p>In <strong>iOS</strong> and <strong>macOS</strong>, we use <a href="https://developer.apple.com/documentation/security/keychain_services#//apple_ref/doc/uid/TP30000897-CH203-TP1">Keychain Services</a> to store private keys directly.</p>
 <p>In <strong>Windows</strong> and <strong>Linux</strong>, we use <a href="https://en.wikipedia.org/wiki/Scrypt">scrypt</a> for transforming user passwords into the key for <a href="https://datatracker.ietf.org/doc/html/rfc5116#section-5.2">AES key</a> that encrypts the private keys.</p>

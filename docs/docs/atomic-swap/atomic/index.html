@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://kalita-platform.github.io/kalita/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://kalita-platform.github.io/kalita/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://kalita-platform.github.io/kalita/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>Atomic Swaps | Kalita</title>
+<meta name="description" content="How atomic swap works and why it is cool">
+<link rel="canonical" href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/">
+
+
+
+
+
+
+  
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://kalita-platform.github.io/kalita/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://kalita-platform.github.io/kalita/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Atomic Swap",
+            "item": "https://kalita-platform.github.io/kalita/docs/atomic-swap/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Atomic",
+            "item": "https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://kalita-platform.github.io/kalita/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://kalita-platform.github.io/kalita/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://kalita-platform.github.io/kalita/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://kalita-platform.github.io/kalita/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="docs single">
+  
+  
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://kalita-platform.github.io/kalita">Kalita</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+				
+					<li class="nav-item">
+						<a class="nav-link" href="https://twitter.com/kalitawallet"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>
+					</li>
+				
+					<li class="nav-item">
+						<a class="nav-link" href="https://github.com/kalita-platform/kalita"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+					</li>
+				
+					<li class="nav-item">
+						<a class="nav-link" href="https://t.me/kalita_wallet"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 37.503 33.574" fill="none" stroke="currentColor" stroke-width="3" xmlns:v="https://vecta.io/nano"><g stroke-linecap="round"><path d="M1.013 14.53L36.503 1l-7.818 31.561" stroke-linejoin="round"/><path d="M29.141 7.652L11.588 19.114M1.013 14.53l6.114 2.673m21.558 15.358L16.037 22.382"/></g><path d="M29.141 7.652L16.037 22.382"/></svg><span class="ms-2 visually-hidden">Telegram</span></a>
+					</li>
+				
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+				<li class="nav-item">
+					<a class="nav-link" href="https://kalita-platform.github.io/kalita/docs/">Docs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://kalita-platform.github.io/kalita/blog/">Blog</a>
+				</li>
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row flex-xl-nowrap">
+	  
+<div class="col-lg-5 col-xl-4 docs-sidebar">
+	<nav class="docs-links" aria-label="Main navigation">
+			
+			
+			
+			
+					
+					
+					
+							<h3>Algorithms</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link active" href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/">Atomic Swaps</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Design</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/backend/">Backend</a></li>
+							                           
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/keys/">Keys management</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Getting Started</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/getting-started/download/">Download</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Help</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/help/faq/">FAQ</a></li>
+							
+					</ul>
+					
+					
+			
+	</nav>
+</div>
+
+	  
+  
+  <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+  	<div class="page-links">
+  			<h3>On this page</h3>
+  			<nav id="TableOfContents">
+  					<ul>
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#introdution">Introdution</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#step-1-creating-order">Step 1. Creating order.</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#step-2-accepting-order">Step 2. Accepting order.</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#step-3-alice-s-escrow">Step 3. Alice&#x27;s escrow.</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#step-4-bob-s-escrow">Step 4. Bob&#x27;s escrow.</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#step-5-redeeming">Step 5. Redeeming.</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#proof-of-ownership">Proof of ownership.</a></li>
+  							
+  									<ul>
+  											
+  											<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#btc">BTC.</a></li>
+  											
+  									</ul>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#abort-scenario">Abort scenario</a></li>
+  							
+  							
+  					</ul>
+  			</nav>
+  	</div>
+  </nav>
+  
+
+      <main class="docs-content col-lg-11 col-xl-9">
+        <h1>Atomic Swaps</h1>
+        
+        <h3 id="introdution">Introdution</h3>
+<p>An atomic swap is a smart contract technology that provides a way to exchange one cryptocurrency for another without using centralized intermediaries, such as exchanges.</p>
+<p>Here we describe atomic swap protocol by example between Ergo and Bitcoin. There are two parties in exchange: Alice and Bob. Alice desires to get Bob's Ergo coin and give him a Bitcoin coin. Communication between parties is performed via encrypted connection in <a href="/docs/design/backend/#yam-network">Yam network</a>. The implementation relies on <a href="https://www.investopedia.com/terms/h/hashed-timelock-contract.asp">HTLC (Hashed Timelock Contract)</a> and compatible with payment channels in <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Network</a>.</p>
+<h3 id="step-1-creating-order">Step 1. Creating order.</h3>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+    <img src="/docs/atomic/creating_order.svg">
+</div>
+<p>Atomic swap orders are created on the wallet and published on indexers via the yam network. Alice must <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove ownership</a> of the funds that she intends to exchange that protect the network from the influx of empty orders (spoofing).</p>
+<p>Alice requests the indexer with a specified amount for exchange and receives in response a random nonce. Alice signs the nonce with a private key that locks P2WSH UTXO and sends back the corresponding public key, reference to the UTXO, and the price for the exchange in the number of requested altcoins.</p>
+<p>Yum node validates the ownership of the funds and publishes the new order in its liquidity pool. The order contains:</p>
+<ul>
+<li>Currency codes</li>
+<li>Bitcoin and Ergo amounts</li>
+<li>Proof of UTXO ownership</li>
+</ul>
+<h3 id="step-2-accepting-order">Step 2. Accepting order.</h3>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+    <img src="/docs/atomic/accepting_order.svg">
+</div>
+<p>Bob also needs to <a href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/#appendix-a-p2wsh-ownership">prove</a> that he has enough funds in Ergo to accept the order. After Bob has demonstrated that he has the funds, the indexer puts the order in the &quot;running&quot; state and connects Alice with Bob by sending him a hash of the session key that plays the <a href="(/docs/design/backend/#routing)">role</a> of destination ID in the Yam network.</p>
+<h3 id="step-3-alice-s-escrow">Step 3. Alice's escrow.</h3>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/yam_order.svg">
+</div>
+<p>Bob contacts Alice and sends the public key <strong>pk(Bob)</strong>, with which he will receive money from Alice. Alice creates script <strong>(sc1)</strong>:</p>
+<pre><code>or(and(pk(Bob),sha256(secret)),and(pk(Alice),after(256)))
+</code></pre>
+<p>The script consists of two branches:</p>
+<ul>
+<li><code>and(pk(Bob),sha256(secret))</code> where Bob takes money using <strong>pk(Bob)</strong> and <strong>secret</strong>.</li>
+<li><code>and(pk(Alice),after(256))</code>   if Bob does not withdraw money after 256 blocks (here we use relative blocks for simplicity), Alice can withdraw money using her public key <strong>pk(Alice)</strong>.</li>
+</ul>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/script1.svg">
+</div>
+<p>Alice sends funds to the script <strong>(sc1)</strong> using the P2WSH address. A UTXO link (block ID, transaction ID, output number) and the serialized script <strong>(sc1)</strong> is sent to Bob via the Yam network. Bob must check that Alice locked the required amount of funds to the P2WSH address and that the address corresponds to the hash of the script <strong>(sc1)</strong>.</p>
+<p>Bob learns Alice's public key <strong>pk(Alice)</strong> and the hash of the secret <strong>sha256(secret)</strong> by reading the script. Also, Bob ensures that Alice can refund after 256 blocks in the future so Bob can finish the swap before the deadline. If these conditions fail, Bob aborts the exchange.</p>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/yam_script1.svg">
+</div>
+<h3 id="step-4-bob-s-escrow">Step 4. Bob's escrow.</h3>
+<p>If everything matches, Bob creates an Ergo script <strong>(sc2)</strong>:</p>
+<pre><code>{
+    val secret = getVar[Coll[Byte]](1).get
+    anyOf(Coll(
+        pkB &amp;&amp; HEIGHT &gt; 640,
+        allOf(Coll(
+            pkA,
+            secret.size &lt; 33,
+            sha256(secret) == secret_hash
+        ))
+    ))
+}
+</code></pre>
+<p>The script consists of two branches:</p>
+<ul>
+<li><code>allOf(Coll(pkA, secret.size &lt; 33, sha256(secret) == secret_hash))</code> where Alice takes money using <strong>pk(Alice)</strong> and <strong>sha256(secret)</strong>. Size check prevents an attack when Alice uses secret larger that is allowed to embed in Ergo transaction.</li>
+<li><code>pkB &amp;&amp; HEIGHT &gt; 640</code> if Alice does not withdraw money after 640 Ergo blocks (the equalivent of 128 Bitcoin blocks), Bob can withdraw money using his public key <strong>pk(Bob)</strong>.</li>
+</ul>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/script2.svg">
+</div>
+<p>The script <strong>(sc2)</strong> creates an Ergo P2SH address to which Bob sends money. A link in the ergo blockchain (block Id, box Id) to the UTXO of this address and the serialized ergo script <strong>(sc2)</strong> are sent to Alice via the Yam network. Alice checks the address corresponds to <strong>(sc2)</strong> script. While reading the script, Alice receives Bob's public key <strong>pk(Bob)</strong> and checks that <strong>(sc2)</strong> is locked to her public key <strong>pk(Alice)</strong>, and that Bob's refund part is locked in time for at least 128 blocks, and that the amount of money is correct specified in the order. If these conditions fail, Alice aborts the exchange.</p>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/yam_script2.svg">
+</div>
+<h3 id="step-5-redeeming">Step 5. Redeeming.</h3>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/atomic_map.svg">
+</div>
+<p>Alice broadcasts a transaction that moves her Ergo from box <strong>(sc2)</strong> where the argument is the original hash <strong>secret</strong>. The secret goes to the Ergo blockchain and becomes public. Bob learns the <strong>secret</strong> and publishes a transaction according to the script <strong>(sc1)</strong> and withdraws his Bitcoin.</p>
+<h3 id="proof-of-ownership">Proof of ownership.</h3>
+<h4 id="btc">BTC.</h4>
+<p>In order to prove her ownership of bitcoins, Alice, in response to a request to create an order, receives a special nonce <strong>X</strong> from the indexer, which is a long string.
+Ownership proof algorythm:</p>
+<ol>
+<li>Create new P2WSH address by public key <strong>pk(Alice)</strong>.</li>
+<li>Get a nonce <strong>X</strong> from indexer.</li>
+<li>Sign <strong>X</strong> by <strong>pk(Alice)</strong>, and send it to indexer.</li>
+<li>Indexer check that <strong>pk(Alice)</strong> from <strong>X</strong> is same as at P2WSH address.</li>
+</ol>
+<div class="row justify-content-center" style="margin-bottom:40px;margin-top:40px;">
+<img src="/docs/atomic/checkownership.svg">
+</div>
+<h3 id="abort-scenario">Abort scenario</h3>
+<p>If Alice does not publish a transaction with a secret and does not receive Ergo, Bob takes back his Ergo after 640 blocks, and Alice takes back her Bitcoin after 256 blocks.</p>
+<p>Consider that Alice has published the <strong>secret</strong>. If Bob does not fit into 256 Bitcoin blocks, Alice takes both the Ergo and her Bitcoin back using the refund branch in the script <strong>(sc1)</strong>.</p>
+
+        
+        
+<div class="docs-navigation d-flex justify-content-between">
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+      
+      
+        
+          
+          
+          <a class="ms-auto" href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;backend&#x2F;">
+            <div class="card my-1">
+              <div class="card-body py-2">
+                Backend &rarr;
+              </div>
+            </div>
+          </a>
+          
+          
+          
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+  
+</div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item">Powered by <a href="https://www.netlify.com/">Netlify</a>, <a href="https://www.getzola.org/">Zola</a>, and <a href="https://github.com/aaranxu/adidoks">AdiDoks</a></li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://kalita-platform.github.io/kalita/js/jquery-3.6.0.min.js"></script>
+<script src="https://kalita-platform.github.io/kalita/js/main.js" defer></script>
+<script src="https://kalita-platform.github.io/kalita/js/animations.js" defer></script>
+
+  <script src="https://kalita-platform.github.io/kalita/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://kalita-platform.github.io/kalita/search_index.en.js" defer></script>
+  <script src="https://kalita-platform.github.io/kalita/js/search.js" defer></script>
+
+  
+</body>
+</html>

@@ -221,6 +221,16 @@
 					
 					
 					
+							<h3>Algorithms</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/atomic-swap/atomic/">Atomic Swaps</a></li>
+							
+					</ul>
+					
+					
+					
+					
 							<h3>Design</h3>
 							<ul class="list-unstyled">
 							                           
@@ -306,9 +316,8 @@
     <img src="/keys/derivation_tree.svg">
 </div>
 <p>The wallet derives two root keys instantly after the generation of a new mnemonic.  They are called <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#extended-keys">extended keys</a>, one is the root public key, and the second one is for the private root key. Wallet derives the keys according to given <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#master-key-generation">derivation path</a> in the key tree:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">m/</span><span style="color:#d08770;">44</span><span style="color:#c0c5ce;">&#39;/</span><span style="color:#d08770;">429</span><span style="color:#c0c5ce;">&#39;/</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">&#39;
-</span></code></pre>
+<pre><code>m/44'/429'/0'
+</code></pre>
 <ul>
 <li>The <strong>m</strong> stands for <strong>Master Node</strong> layer that is derived directly from the wallet seed.</li>
 <li>The <strong>44'</strong> part stands for <strong>purpose</strong> part from <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a> and marks that we support that standard. The extra tick symbol marks that we apply additional hardening to the layer, so some <a href="https://medium.com/@blainemalone01/hd-wallets-why-hardened-derivation-matters-89efcdc71671">subtle attacks</a> not possible.</li>
@@ -355,6 +364,11 @@
   
     
     
+    
+      
+      
+        
+      
     
       
       

@@ -13,17 +13,17 @@ toc = true
 top = false
 +++
 
-Kalita is a [non-custodial](https://en.bitcoin.it/wiki/Non-custodial_wallet) wallet that means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your [backup seed](/docs/design/backup).
+Kalita is a [non-custodial](https://en.bitcoin.it/wiki/Non-custodial_wallet) wallet. That means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your [backup seed](/docs/design/backup).
 
 # Seed
 
-The main secret your wallet is a [seed phrase](https://en.bitcoin.it/wiki/Seed_phrase). It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.
+The main secret of your wallet is a [seed phrase](https://en.bitcoin.it/wiki/Seed_phrase). It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.
 
 <div class="row screen-pic">
     <img src="/seed_screen.png">
 </div>
 
-The best way to store your seed phrase is to write it down on paper. The following ideas are likely are not the best ones:
+The best way to store your seed phrase is to write it down on paper or something [more durable](https://wiki.trezor.io/Cryptosteel). The following ideas are likely are not the best ones:
 * If you take a photo or screenshot of the seed, the picture can be easily lost or leaked, and you will lose your funds.
 * If you place the seed in a cloud or other online storage, the cloud provider or social engineering can sweep your wallet. At least the seed must be [GPG encrypted](https://www.gnupg.org/gph/en/manual/x110.html), but you definitely should be aware of unobvious attack vectors (like keyloggers or side-channel attacks). So, do it only if you know what you are doing.
 

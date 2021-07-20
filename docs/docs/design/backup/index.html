@@ -46,9 +46,9 @@
 
 	
 
-<title>Keys management | Kalita</title>
-<meta name="description" content="Description how wallet handles keys">
-<link rel="canonical" href="https://kalita-platform.github.io/kalita/docs/design/keys/">
+<title>Swap backups | Kalita</title>
+<meta name="description" content="Description how wallet handles backups">
+<link rel="canonical" href="https://kalita-platform.github.io/kalita/docs/design/backup/">
 
 
 
@@ -123,8 +123,8 @@
           {
             "@type": "ListItem",
             "position":  4 ,
-            "name": "Keys",
-            "item": "https://kalita-platform.github.io/kalita/docs/design/keys/"
+            "name": "Backup",
+            "item": "https://kalita-platform.github.io/kalita/docs/design/backup/"
           },
         
       
@@ -236,9 +236,9 @@
 							                           
 									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/backend/">Backend</a></li>
 							                           
-									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/backup/">Swap backups</a></li>
+									<li><a class="docs-link active" href="https://kalita-platform.github.io/kalita/docs/design/backup/">Swap backups</a></li>
 							                           
-									<li><a class="docs-link active" href="https://kalita-platform.github.io/kalita/docs/design/keys/">Keys management</a></li>
+									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/keys/">Keys management</a></li>
 							                           
 									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/mix/">Mixing</a></li>
 							                           
@@ -279,21 +279,10 @@
   			<nav id="TableOfContents">
   					<ul>
   							
-  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/keys/#seed">Seed</a></li>
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/backup/#secret-derivation">Secret derivation</a></li>
   							
   							
-  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/keys/#key-tree">Key tree</a></li>
-  							
-  							
-  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/keys/#storage">Storage</a></li>
-  							
-  									<ul>
-  											
-  											<li><a href="https://kalita-platform.github.io/kalita/docs/design/keys/#private-storage">Private storage</a></li>
-  											
-  											<li><a href="https://kalita-platform.github.io/kalita/docs/design/keys/#public-storage">Public storage</a></li>
-  											
-  									</ul>
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/backup/#redeem-script">Redeem script</a></li>
   							
   							
   					</ul>
@@ -303,49 +292,23 @@
   
 
       <main class="docs-content col-lg-11 col-xl-9">
-        <h1>Keys management</h1>
+        <h1>Swap backups</h1>
         
-        <p>Kalita is a <a href="https://en.bitcoin.it/wiki/Non-custodial_wallet">non-custodial</a> wallet. That means only your local device stores your coins. No server or any other third party can access your funds. Also, that means only you are responsible for safekeeping your coins. Nobody can restore a lost wallet if you lose your <a href="/docs/design/backup">backup seed</a>.</p>
-<h1 id="seed">Seed</h1>
-<p>The main secret of your wallet is a <a href="https://en.bitcoin.it/wiki/Seed_phrase">seed phrase</a>. It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.</p>
-<div class="row screen-pic">
-    <img src="/seed_screen.png">
-</div>
-<p>The best way to store your seed phrase is to write it down on paper or something <a href="https://wiki.trezor.io/Cryptosteel">more durable</a>. The following ideas are likely not the best:</p>
-<ul>
-<li>If you take a photo or a screenshot of the seed, the picture can be easily lost or leaked, and you will lose your funds.</li>
-<li>If you place the seed in a cloud or other online storage, the cloud provider or social engineering can sweep your wallet. At the bare minimum the seed must be <a href="https://www.gnupg.org/gph/en/manual/x110.html">GPG encrypted</a>, but you definitely should be aware of unobvious attack vectors (like keyloggers or side-channel attacks). So, do it only if you know what you are doing.</li>
-</ul>
-<h1 id="key-tree">Key tree</h1>
-<p>The next step in the wallet overview is the keys derivation mechanism. The seed phrase generates an infinite tree of public and private keys. We use widely adopted standards for deterministic derivation from the Bitcoin world, such as <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>, <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a>, <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">SLIP44</a>. In addition, our implementation is <a href="https://github.com/ergoplatform/eips/blob/master/eip-0003.md">EIP3</a> compliant.</p>
-<p>The derivation scheme allows you to generate a new key for each new transaction and organize key chains by purpose. What is even handier, you can restore all your keys and funds using only the seed phrase. Another great opportunity is that you can create a <a href="https://www.quora.com/What-does-watch-only-mean-in-Blockchain-wallet">watch-only</a> wallet and keep your private keys in an <a href="https://en.bitcoin.it/wiki/Cold_storage">air-gapped</a> device.</p>
+        <p>The ability to restore funds after losing access to a wallet is an all-important feature. Though the <a href="/docs/design/keys/#seed">seed phrase</a> allows a user to restore their wallet, it works only for funds under their complete control, and that contains all data on-chain. <a href="/docs/atomic-swap/atomic">Atomic swap</a> is an instance of such problematic funds.</p>
+<p>A finished swap is not an issue as we can discover all necessary parts on-chain using <a href="/docs/design/backend#compact-filters">filters</a>. On the other side, once Alice or Bob locked their coins inside escrow contracts, some pieces of the puzzle persist off-chain. Moreover, if the user is not fast enough, they can <a href="/docs/atomic-swap/atomic/#abort-scenario">donate</a> their funds to another swap side.</p>
+<p>So, there are two primary components that we need to restore to resume the ongoing swap. First is the secret preimage for unlocking escrow contracts that Alice generates at the beginning of the trade. The second is escrow redeem scripts where Alice and Bob lock their funds. </p>
+<h2 id="secret-derivation">Secret derivation</h2>
+<p>Each time a new swap starts, Alice generates a unique secret that is used as proof of payment and allows both parties to take exchanged funds from corresponding escrow boxes. We propose a way to deterministically derive the secret from the user's seed phrase by extending a <a href="/docs/design/keys/#key-tree">BIP32 key tree</a> with a new keychain.</p>
 <div class="row">
-    <img src="/keys/derivation_tree.svg">
+    <img src="/backup/swap_secret_subtree.svg">
 </div>
-<p>The wallet derives two root keys after the generation of a new mnemonic.  They are called <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#extended-keys">extended keys</a>, one is the root public key, and the second one is for the private root key. The wallet derives the keys according to given <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#master-key-generation">derivation path</a> in the key tree:</p>
-<pre><code>m/44'/429'/0'
-</code></pre>
-<ul>
-<li>The <strong>m</strong> stands for <strong>Master Node</strong> layer that is derived directly from the wallet seed.</li>
-<li>The <strong>44'</strong> part stands for <strong>purpose</strong> part from <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44</a> and marks that we support that standard. The extra tick symbol marks that we apply additional hardening to the layer, so that some <a href="https://medium.com/@blainemalone01/hd-wallets-why-hardened-derivation-matters-89efcdc71671">subtle attacks</a> are not possible.</li>
-<li>The <strong>429'</strong> part refers to <strong>Ergo</strong> currency in <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">SLIP44</a> and <a href="https://github.com/ergoplatform/eips/blob/master/eip-0003.md">EIP3</a> standards.</li>
-<li>The last <strong>0'</strong> marks that the wallet is first in the tree. We are going to support multiple wallets/accounts per mnemonic in the future.</li>
-</ul>
-<p>Finally, the wallet derives keys for specific sequences of addresses at the bottom of the tree:</p>
-<ol>
-<li><strong>External chain</strong> produces addresses that one sees on &quot;Receive Ergo&quot; screen. Any incoming transaction from other people or smart contracts should go there.</li>
-<li><strong>Internal chain</strong> produces addresses where your wallet collects change from outcoming transactions. The chain should contain only funds that the wallet sends back to itself.</li>
-<li><a href="/docs/atomic-swap/atomic">Atomic swaps</a> chain produces addresses for escrow smart contracts. The chain has to contain only funds temporarily locked in swaps.</li>
-</ol>
-<h1 id="storage">Storage</h1>
-<p>The wallet defines two types of sensitive data. Public data is crucial for user privacy, but a wallet can keep it in memory for a long time. For instance, the wallet needs public keys to detect incoming transactions and generate new addresses. The private keys can spend your funds, so the wallet must keep them unencrypted only for a brief moment of transaction signing.</p>
-<h2 id="private-storage">Private storage</h2>
-<p>We provide a specific implementation of the private storage for each supported platform.</p>
-<p>In <strong>Android</strong>, we use <a href="https://developer.android.com/training/articles/keystore.html">Keystore API</a> to store an <a href="https://datatracker.ietf.org/doc/html/rfc5116#section-5.2">AES key</a> that encrypts the private keys.</p>
-<p>In <strong>iOS</strong> and <strong>macOS</strong>, we use <a href="https://developer.apple.com/documentation/security/keychain_services#//apple_ref/doc/uid/TP30000897-CH203-TP1">Keychain Services</a> to store private keys directly.</p>
-<p>In <strong>Windows</strong> and <strong>Linux</strong>, we use <a href="https://en.wikipedia.org/wiki/Scrypt">scrypt</a> for transforming user passwords into the key for <a href="https://datatracker.ietf.org/doc/html/rfc5116#section-5.2">AES key</a> that encrypts the private keys.</p>
-<h2 id="public-storage">Public storage</h2>
-<p>The wallet also protects the public storage by encryption, but we don't want a user to enter the password each time public meta-information updates. Thus, we use <a href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme">ECIES</a> asymmetric encryption to save the encrypted file without the requirement of knowing decryption password.</p>
+<p>Swaps chain derives one chain for public/private keys used in escrow contracts and one chain for swap secrets. Note that we don't need to derive public keys for secrets. Moreover, we pass the keys through the key stretching <a href="https://en.wikipedia.org/wiki/Scrypt">scrypt</a> to prevent any attacks that can compromise the parent secret key and thus all future swaps.</p>
+<h2 id="redeem-script">Redeem script</h2>
+<p>Unlike swap secrets, you cannot derive <a href="/docs/atomic-swap/atomic#step-3-alice-s-escrow">redeem script</a> by knowing only the seed phrase. The script contains a public key of Bob that Alice cannot derive by herself. Also, details of the P2WSH operation make it impossible to derive the script from blockchain until somebody spends the corresponding output.</p>
+<div class="row">
+    <img src="/backup/backup_restore.svg">
+</div>
+<p>Our solution is to ask the yam node about the missing redeem script. The node tracks the swap process anyway as it needs to detect the malicious behavior of Bob or Alice (see <a href="/docs/atomic-swap/atomic#utxo-ban">UTXO ban</a>). If Alice desires to get both scripts for BTC and Ergo escrow accounts, she should send the swap order id and her public key. The node sends encrypted scripts with Alice's public key. If Bob or another third party asked for scripts, they wouldn't able to decrypt the answer.</p>
 
         
         
@@ -355,10 +318,10 @@
   
   
   
-  <a href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;backup&#x2F;">
+  <a href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;backend&#x2F;">
     <div class="card my-1">
       <div class="card-body py-2">
-        &larr; Swap backups
+        &larr; Backend
       </div>
     </div>
   </a>
@@ -369,10 +332,10 @@
   
   
   
-    <a class="ms-auto" href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;mix&#x2F;">
+    <a class="ms-auto" href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;keys&#x2F;">
       <div class="card my-1">
         <div class="card-body py-2">
-          Mixing &rarr;
+          Keys management &rarr;
         </div>
       </div>
     </a>

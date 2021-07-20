@@ -240,8 +240,6 @@
 							                           
 									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/keys/">Keys management</a></li>
 							                           
-									<li><a class="docs-link" href="https://kalita-platform.github.io/kalita/docs/design/mix/">Mixing</a></li>
-							                           
 									<li><a class="docs-link active" href="https://kalita-platform.github.io/kalita/docs/design/tokens/">Tokens</a></li>
 							
 					</ul>
@@ -279,6 +277,12 @@
   			<nav id="TableOfContents">
   					<ul>
   							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/tokens/#keys">Keys</a></li>
+  							
+  							
+  							<li><a href="https://kalita-platform.github.io/kalita/docs/design/tokens/#restore">Restore</a></li>
+  							
+  							
   					</ul>
   			</nav>
   	</div>
@@ -288,7 +292,20 @@
       <main class="docs-content col-lg-11 col-xl-9">
         <h1>Tokens</h1>
         
-        <p>Hello</p>
+        <p>Ergo blockchain natively supports tokens by embedding them in additional data of a transaction. According to the <a href="https://ergoplatform.org/docs/ErgoScript.pdf">ErgoScript whitepaper</a>, a box can store a maximum of 4 different tokens inside the <code>R2</code> register. The box encodes them as a collection of ID and the amount <code>Coll[(Coll[Byte], Long)]</code>.</p>
+<h2 id="keys">Keys</h2>
+<p>Although any wallet address can receive tokens, we decided to factor out tokens into their key chains. That simplifies balance management and restore procedure. </p>
+<div class="row">
+    <img src="/tokens/tokens_subtree.svg">
+</div>
+<p>There are two major types of tokens:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Non-fungible_token">NFT tokens</a> are unique and not interchangeable. Each address in  the NFT key chain holds a different type of token. Ergo blockchain implements the token kind as a token with emission of 1 unit and restriction of splitting to 0 digits after the point.</li>
+<li>Fungible tokens that have emissions of more than 1 unit. The wallet provides its keychain for each token type with subchains for receiving and change.</li>
+</ul>
+<h2 id="restore">Restore</h2>
+<p>We recover NFT tokens with the usual procedure by sequentially checking each key in the chain until there are a certain amount of empty addresses. That amount is called a <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#Address_gap_limit">gap limit</a>. </p>
+<p>But, the wallet recovers the ordinary tokens in a slightly different way. As we cannot know the number of tokens in advance in restoring wallet, we introduce a gap limit for token subtree. As soon as the wallet scans a couple of empty token chains, we consider no more new token kinds in the user wallet.</p>
 
         
         
@@ -298,10 +315,10 @@
   
   
   
-  <a href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;mix&#x2F;">
+  <a href="https:&#x2F;&#x2F;kalita-platform.github.io&#x2F;kalita&#x2F;docs&#x2F;design&#x2F;keys&#x2F;">
     <div class="card my-1">
       <div class="card-body py-2">
-        &larr; Mixing
+        &larr; Keys management
       </div>
     </div>
   </a>

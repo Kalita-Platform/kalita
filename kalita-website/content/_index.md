@@ -148,7 +148,7 @@ github = "fastpok"
 telegram = "fastpok"
 
 [extra.crowdfund]
-amount = 0 # Percent field set in css _crowdfund.scss in .funding-meter
+amount = 2.935 # Percent field set in css _crowdfund.scss in .funding-meter
 
 [extra.crowdfund.minimal]
 amount = 36000

@@ -232,4 +232,11 @@
     <div class="col-lg-9"></div>
   </div>
 </section>
+
+<script src="{{ get_url(path="js/index.js", trailing_slash=false) }}"></script> 
+<script>
+  var minimalRaisedAmount = {{ section.extra.crowdfund.minimal.amount }};
+  window.onload = function(){ updateCrowdfund(); };
+</script>
+
 {% endblock content %}

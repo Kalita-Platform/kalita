@@ -32,6 +32,13 @@ body.dark .raised-amount {
     color: $link-color-dark;
 }
 
+.ergo-amount {
+    color: $red-3;
+}
+body.dark .ergo-amount {
+    color: $link-color-dark;
+}
+
 .funding-wrapper {
     border-radius: 25px;
     height: 40px;

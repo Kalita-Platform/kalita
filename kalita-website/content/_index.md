@@ -12,19 +12,19 @@ repo_url = "https://github.com/kalita-platform/kalita"
 team_description = 'We are part of <a href="https://github.com/hexresearch">HXR team</a> that provides open source solutions since 2016.'
 
 [[extra.splash]]
-img = "balances_screen.png"
+img = "/screenshots/balances_screen.png"
 
 [[extra.splash]]
-img = "send_screen.png"
+img = "/screenshots/send_screen.png"
 
 [[extra.splash]]
-img = "seed_screen.png"
+img = "/screenshots/seed_screen.png"
 
 [[extra.splash]]
-img = "txinfo_screen.png"
+img = "/screenshots/txinfo_screen.png"
 
 [[extra.splash]]
-img = "restore_screen.png"
+img = "/screenshots/restore_screen.png"
 
 [[extra.list]]
 title = "Security"

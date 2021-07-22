@@ -5,6 +5,7 @@
 
 
 {% macro stylesheet() %}
+<link rel="stylesheet" href='{{ get_url(path="css/lightbox.min.css") | safe }}'> 
 <link rel="stylesheet" href="{{ get_url(path="main.css") | safe }}">
 {% endmacro %}
 

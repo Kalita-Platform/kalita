@@ -20,7 +20,7 @@ Kalita is a [non-custodial](https://en.bitcoin.it/wiki/Non-custodial_wallet) wal
 The main secret of your wallet is a [seed phrase](https://en.bitcoin.it/wiki/Seed_phrase). It is a random phrase that contains 12 or more words that allow you to restore the wallet on a fresh installation.
 
 <div class="row screen-pic">
-    <img src="/seed_screen.png">
+    <img src="/screenshots/seed_screen.png">
 </div>
 
 The best way to store your seed phrase is to write it down on paper or something [more durable](https://wiki.trezor.io/Cryptosteel). The following ideas are likely not the best:

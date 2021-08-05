@@ -18,7 +18,7 @@ async function getBtcPrice() {
 
 async function getRaisedErgs() {
     const resp = await $.ajax({
-        url: "https://api.ergoplatform.com/api/v1/boxes/byAddress/9hViCLdA3AGpQ7o9hRh3eHsCedCCB72Xtuj1yo6uYnYUAJqzVwE",
+        url: "https://api.ergoplatform.com/api/v1/boxes/byAddress/9fFdqTMSUppJtPwZP8r5wxBs3WRRF4QVkdhNQd6mj8P2dhk2aw8",
         type: 'GET',
       });
     const boxes = resp.items;

@@ -168,5 +168,5 @@ address = "bc1q8fhscz9ua5j76tkr04y9y7pr70gnq4lc40aun7"
 
 [extra.crowdfund.ergo]
 qrcode = "crowdfund/ergo.png"
-address = "9hViCLdA3AGpQ7o9hRh3eHsCedCCB72Xtuj1yo6uYnYUAJqzVwE"
+address = "9fFdqTMSUppJtPwZP8r5wxBs3WRRF4QVkdhNQd6mj8P2dhk2aw8"
 +++
